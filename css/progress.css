@@ -1,0 +1,17 @@
+.progressbar {
+  background: #ffffff;
+  opacity: .5;
+  transition: 300ms;
+  cursor: pointer;
+  height: 5px;
+  z-index: 5;
+}
+
+.progressbar:hover {
+  height: 10px;
+}
+
+.progress-indicator {
+  background: purple;
+}
+

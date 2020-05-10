@@ -1,0 +1,39 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css');
+
+@import './css/controls.css';
+@import './css/progress.css';
+
+*{
+    margin: 0;
+    padding: 0;
+    border: unset;
+    outline: none;
+}
+
+body {
+    background: black;
+}
+
+.video-container, .video-container * {
+    display: flex;
+}
+
+.video-container {
+    position: relative;
+    width: fit-content;
+    background: unset;
+    height: 100vh;
+    width: 100vw;
+}
+
+.player {
+    max-height: 100vh;
+    min-width: 300px;
+    width: 100vw;
+}
+
+.player-view {
+    cursor: pointer;
+    height: 100%;
+    z-index: 1;
+}

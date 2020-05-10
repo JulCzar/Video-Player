@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <link rel="shortcut icon" href="./static/fav.png" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8">
+  <title>Video Player</title>
+</head>
+<body>
+  <!-- Container que contêm o player junto com seus controles -->
+  <div id="video-container" class="video-container">
+
+    <!-- controles do video -->
+    <div class="video-controls">
+      <div class="player-view play-pause" style="display: none;"></div>
+
+      <!-- Barra que exibe o progresso da reprodução do vídeo -->
+      <div id="progress-bar" class="progressbar playr-seek">
+        <div id="progress" class="progress-indicator"></div>
+      </div>
+
+      <!-- Controles da reprodução do vídeo -->
+      <div id="controls" class="controls">
+
+        <!-- controles de tempo -->
+        <div class="player-controls">
+          <i id="play-btn" class="fas fa-play play-pause"></i>
+          <i class="fas fa-backward back-5-sec"></i>
+          <i class="fas fa-forward add-10-sec"></i>
+        </div>
+
+        <!-- controles de configurações -->
+        <div class="player-aspect">
+          <div class="volume-control">
+            <div class="vol-slider-container">
+              <input
+                class="vol-slider"
+                id="vol-slider"
+                type="range"
+                value="100"
+                max="100"
+                min="0"
+              />
+            </div>
+            <i id="volume" class="fas vol-contrl vol-icon"></i>
+          </div>
+          <i id="fullscreen" class="fas fa-expand fullscreen"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- player com os controles ocultos -->
+    <video id="player" class="player" src="./movie/sample.mp4"></video>
+  </div>
+
+  <!-- Framework -->
+  <script
+    crossorigin="anonymous"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+  ></script>
+
+  <!-- Scripts -->
+  <script type="module" src="./index.js"></script>
+</body>
+</html>
