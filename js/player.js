@@ -3,6 +3,8 @@ import keyboard from './controls.js'
 
 const player = get.Id('player')
 
+const volumeBar = $('#vol-slider')
+
 listen('keydown', keybFunc)
 
 /**
@@ -24,5 +26,5 @@ function keybFunc({ code }) {
  * Update the volume slider position after a keypress
  */
 function updateVolume() {
-  $('#vol-slider').val(player.volume * 100)
+  volumeBar.val(player.volume * 100)
 }

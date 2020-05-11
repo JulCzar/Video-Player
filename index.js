@@ -1,11 +1,17 @@
 import { getters, mutations } from './js/states/Controls.js'
 import { get, listen } from './js/utils/CzarK.js'
 
-const showPlayerView = () => { $('.player-view').show() }
 const vidContainer = get.Id('video-container')
+
+const SHOW_CONTROLS = 'show-controls'
+
+const playerView = $('.player-view')
+const controlBar = $('#controls')
 
 const TIME_HIDE_CNTRLS = 2500
 const TIME_PRVT_MOBILE = 75
+
+const showPlayerView = () => { playerView.show() }
 
 import './js/updateVideoView.js'
 import './js/controls.js'
@@ -21,7 +27,7 @@ function showControls() {
   clearTimeout(id)
   
   // show the controlsBar
-  $('#controls').addClass('show-controls')
+  controlBar.addClass(SHOW_CONTROLS)
 
   setTimeout(showPlayerView, TIME_PRVT_MOBILE)
 
@@ -35,8 +41,8 @@ function showControls() {
  * and the play/pause div
  */
 function hideControls() {
-  $('#controls').removeClass('show-controls')
-  $('.player-view').hide()
+  controlBar.removeClass(SHOW_CONTROLS)
+  playerView.hide()
 }
 
 export default showControls
