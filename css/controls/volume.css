@@ -17,7 +17,7 @@
 }
 
 .vol-icon {
-  transition-delay: 50ms;
+  transition-delay: 50ms !important;
   z-index: -1;
 }
 

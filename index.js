@@ -1,52 +1,42 @@
+import { getters, mutations } from './js/states/Controls.js'
 import { get, listen } from './js/utils/CzarK.js'
+
+const showPlayerView = () => { $('.player-view').show() }
+const vidContainer = get.Id('video-container')
+
+const TIME_HIDE_CNTRLS = 2500
+const TIME_PRVT_MOBILE = 75
 
 import './js/updateVideoView.js'
 import './js/controls.js'
 import './js/player.js'
 
-const vidContnr = get.Id('video-container')
-const volSlider = get.Id('vol-slider')
+listen('mousemove', showControls, vidContainer)
+listen(  'click'  , showControls, vidContainer)
 
-let hideCtrlsId
-
-listen('mousemove', showAndHideControls, vidContnr)
-listen(  'click'  , showAndHideControls, vidContnr)
-listen(  'input'  , changeVol)
-
-function showAndHideControls() {
+function showControls() {
   // clear the last timeout to prevent the controlsBar to close
-  clearTimeout(hideCtrlsId)
+  // while mouse is moving
+  let id = getters.getCtrlState()
+  clearTimeout(id)
   
   // show the controlsBar
   $('#controls').addClass('show-controls')
 
-  // shows the div that control the play/pause
-  // event when clicking at the player-view
-  //
-  // Obs: This timeout is used to guarantee that
-  // mobile users don't pause instantly at click
-  setTimeout(a => $('.player-view').show(), 50)
+  setTimeout(showPlayerView, TIME_PRVT_MOBILE)
 
-  // activate a timeout and save its id to hide the controlsBar
-  hideCtrlsId = setTimeout(hideControls, 2500)
+  // activate a timeout and save its id to hide the controls
+  id = setTimeout(hideControls, TIME_HIDE_CNTRLS)
+  mutations.setCtrlState(id)
 }
 
 /**
- * Function with the responsability to hide the controlsbar
+ * Function with the responsability to hide controlsbar
  * and the play/pause div
  */
 function hideControls() {
   $('#controls').removeClass('show-controls')
-  setTimeout(a => $('.player-view').hide(), 350)
+  $('.player-view').hide()
 }
 
-function changeVol() {
-  // prevents the controls from hide while the volume is modified
-  showAndHideControls()
-
-  // get the current input value at the volume slider
-  const { value } = volSlider
-
-  // apply the value to the player
-  player.volume = value / 100
-}
+export default showControls

@@ -1,7 +1,7 @@
 import { get, listen } from './utils/CzarK.js'
 import keyboard from './controls.js'
 
-const player    = get.Id('player')
+const player = get.Id('player')
 
 listen('keydown', keybFunc)
 

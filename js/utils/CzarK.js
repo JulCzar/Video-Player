@@ -24,7 +24,7 @@ const get = {
   },
   /**
    * Find the first element that match with the query specified
-   * @param {String} item Query you want to locate
+   * @param {String} elementQuery Query you want to locate
    */
   Query (elementQuery) {
     return d.querySelector(elementQuery)

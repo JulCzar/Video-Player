@@ -2,35 +2,48 @@ import { d, get } from "./utils/CzarK.js"
 
 const player = get.Id('player')
 
+const progressBar = $('#progress')
+const fullscreen = $('.fullscreen')
+const playBtn = $('#play-btn')
+const volIcon = $('#volume')
+
+const VOL_HIG = 'fa-volume-up'
+const VOL_OFF = 'fa-volume-off'
+const VOL_LOW = 'fa-volume-down'
+const VOL_MUT = 'fa-volume-mute'
+const PLAY_BTN = 'fa-play'
+const PAUSE_BT = 'fa-pause'
+const MAXIMIZE = 'fa-expand'
+const MINIMIZE = 'fa-compress'
+
 const updateVideoView = () => {
   const { muted, paused, progress, volume } = getVideoState()
-
   // update progressBar with the current time of the player
-  $('#progress').width(progress)
+  progressBar.width(progress + '%')
 
   // update the play/pause button to the current video state
-  $('#play-btn')
-    .removeClass('fa-play fa-pause')
-    .addClass(paused ? 'fa-play':'fa-pause')
+  playBtn
+    .removeClass([ PLAY_BTN, PAUSE_BT ])
+    .addClass(paused ? PLAY_BTN:PAUSE_BT)
 
   // remove the current icon of volume indicator
-  $('#volume').removeClass('fa-volume-off fa-volume-down fa-volume-up fa-volume-mute')
+  volIcon.removeClass([ VOL_HIG, VOL_LOW, VOL_MUT, VOL_OFF ])
 
   // update the current icon of volume indicator
   if (muted)
-    $('#volume').addClass('fa-volume-mute')
+    volIcon.addClass(VOL_MUT)
   else if (!volume) 
-    $('#volume').addClass('fa-volume-off')
+    volIcon.addClass(VOL_OFF)
   else if (volume < 0.5)
-    $('#volume').addClass('fa-volume-down')
+    volIcon.addClass(VOL_LOW)
   else
-    $('#volume').addClass('fa-volume-up')
+    volIcon.addClass(VOL_HIG)
 
   // update the fullscreen indicator
   if (d.fullscreenElement)
-    $('.fullscreen').removeClass('fa-expand').addClass('fa-compress')
+    fullscreen.removeClass(MAXIMIZE).addClass(MINIMIZE)
   else
-    $('.fullscreen').removeClass('fa-compress').addClass('fa-expand')
+    fullscreen.removeClass(MINIMIZE).addClass(MAXIMIZE)
 
   // Recusively and optimaly calls its function again to keep the player updated
   requestAnimationFrame(updateVideoView)
@@ -38,10 +51,10 @@ const updateVideoView = () => {
 
 /**
  * function that get and return the state of the video with some tweaks
- * @returns {{ muted: Boolean, paused: Boolean, progress: String, volume: Number }}
+ * @returns {{ muted: Boolean, paused: Boolean, progress: Number, volume: Number }}
  */
 function getVideoState() {
-  // Pega as informações do estado do player de vídeo
+  // get Video infos about current state of player
   const {
     currentTime,
     duration,
@@ -51,9 +64,9 @@ function getVideoState() {
   } = player
 
   // convert a ms time to the watched percentage
-  const progress = `${( (currentTime / duration) * 100).toFixed(2)}%`
+  const progress = parseFloat((currentTime / duration * 100).toFixed(2))
 
   return { paused, muted, progress, volume }
 }
 
-;(updateVideoView)()
+requestAnimationFrame(updateVideoView)
