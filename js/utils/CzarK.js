@@ -1,11 +1,6 @@
-/**
- * JulCzar javascript framework
- * Made by Júlio César Barcelo Monteiro
- * Date: 12/19/2018
- * Last Edit: 05/01/2019
- */
-
-const d = document
+const d  = document
+const LS = localStorage
+const SS = sessionStorage
 
 const get = {
   /**
@@ -43,12 +38,12 @@ const get = {
     return new Date().getTime()
   },
   /**
-   * Find in the SessionStorage the key requested and return the value parsed
+   * Find in the SS the key requested and return the value parsed
    * @param {String} key
    * @returns {JSON}
    */
   Session (key) {
-    const value = sessionStorage.getItem(key)
+    const value = SS.getItem(key)
     return JSON.parse(value)
   },
   /**
@@ -57,7 +52,7 @@ const get = {
    * @returns {JSON}
    */
   Local (key) {
-    const value = localStorage.getItem(key)
+    const value = LS.getItem(key)
     return JSON.parse(value)
   },
   /**
@@ -81,16 +76,16 @@ const set = {
    */
   Local (key, data) {
     const value = JSON.stringify(data)
-    localStorage.setItem(key, value)
+    LS.setItem(key, value)
   },
   /**
-   * Save in the SessionStorage any data
+   * Save in the SS any data
    * @param {String} key Key where the data will be stored
    * @param {*} data data to be stored
    */
   Session (key, data) {
     const value = JSON.stringify(data)
-    sessionStorage.setItem(key, value)
+    SS.setItem(key, value)
   }
 }
 
@@ -100,14 +95,14 @@ const del = {
    * @param {String} key Key to be deleted
    */
   fromLocal (key) {
-    localStorage.removeItem(key)
+    LS.removeItem(key)
   },
   /**
-   * Delete from SessionStorage a key
+   * Delete from SS a key
    * @param {String} key
    */
   fromSession (key) {
-    sessionStorage.removeItem(key)
+    SS.removeItem(key)
   },
   /**
    * Remove from the DOM an element
@@ -143,5 +138,8 @@ const truncate = (str, maxLength, sufix = '...') => {
 export {
   d,
   get,
-  listen
+  set,
+  del,
+  listen,
+  truncate
 }
