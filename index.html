@@ -13,7 +13,7 @@
 
     <!-- controles do video -->
     <div class="video-controls">
-      <div class="player-view play-pause" style="display: none;"></div>
+      <div class="player-view play-pause"></div>
 
       <!-- Barra que exibe o progresso da reprodução do vídeo -->
       <div id="progress-bar" class="progressbar playr-seek">
@@ -25,9 +25,14 @@
 
         <!-- controles de tempo -->
         <div class="player-controls">
-          <i id="play-btn" class="fas fa-play play-pause"></i>
+          <i class="fas fa-play play-pause play-btn"></i>
           <i class="fas fa-backward back-5-sec"></i>
           <i class="fas fa-forward add-10-sec"></i>
+          <div class="time-progress">
+            <div class="current-time"></div>
+            <div class="separator">/</div>
+            <div class="duration-time"></div>
+          </div>
         </div>
 
         <!-- controles de configurações -->

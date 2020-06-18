@@ -1,10 +1,10 @@
 .progressbar {
   background: #ffffff;
-  opacity: .5;
   transition: 300ms;
   cursor: pointer;
+  opacity: .5;
   height: 5px;
-  z-index: 5;
+  z-index: 1;
 }
 
 .progressbar:hover {
@@ -13,5 +13,13 @@
 
 .progress-indicator {
   background: purple;
+}
+
+.time-progress {
+  color: white;
+  font-family: sans-serif;
+  align-items: center;
+  font-weight: 700;
+  font-size: 16px;
 }
 
