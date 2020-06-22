@@ -6,7 +6,7 @@ const durationTotal = $('.duration-time')
 const progressTime = $('.current-time')
 const progressBar = $('#progress')
 const fullscreen = $('.fullscreen')
-const playBtn = $('#play-btn')
+const playBtn = $('.play-btn')
 const volIcon = $('#volume')
 
 const VOL_HIG = 'fa-volume-up'
@@ -92,19 +92,13 @@ function parseTime(timeInSec) {
   const sec = parseInt(timeInSec % 60) || 0
   const min = parseInt(timeInSec / 60) || 0
   
-  return {
-    sec,
-    min
-  }
+  return { sec, min }
 }
 
 function parseTimeAsString(parsedTime) {
   const { min, sec } = parsedTime
 
-  const state = {
-    min,
-    sec
-  }
+  const state = { min, sec }
 
   if (sec < 10) state.sec = `0${sec}`
 
